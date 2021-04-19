@@ -12,6 +12,7 @@ import software.amazon.awssdk.services.ssm.model.GetParameterResponse;
 import software.amazon.awssdk.services.ssm.model.SsmException;
 
 import java.lang.reflect.Type;
+import java.util.concurrent.CompletableFuture;
 
 
 @Component
@@ -30,13 +31,15 @@ public class ParameterStoreOperations {
             GetParameterRequest parameterRequest = GetParameterRequest.builder()
                     .name(parameterName)
                     .build();
-            return Mono.fromFuture(client.getParameter(parameterRequest))
-                    .map(response -> gson.fromJson(response.parameter().value(), typeOfT));
+            CompletableFuture<GetParameterResponse> response = client.getParameter(parameterRequest);
+            String resString = response.join().parameter().value();
+            return Mono.just(gson.fromJson(resString, typeOfT));
         } catch (SsmException e) {
             log.info("Error fetching parameter from ParameterStore Service" + e.getMessage());
             return null;
         } catch (JsonParseException e) {
             log.info("Error parsing response to class: " + typeOfT.getTypeName() + " provided.");
+            log.info(e.getMessage());
             return null;
         }
     }
