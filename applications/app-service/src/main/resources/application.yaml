@@ -1,19 +1,14 @@
+##Spring Configuration
 server:
   port: 8080
 spring:
   application:
-    name: "dynamo-demo"
+    name: cleanArchitecture
   devtools:
     add-properties: false
   h2:
     console:
       enabled: true
-      path: "/h2"
+      path: /h2
   profiles:
-    include: null
-adapter:
-  aws:
-    s3:
-      bucketName: ""
-      region: "us-east-1"
-      endpoint: ""
+    include:

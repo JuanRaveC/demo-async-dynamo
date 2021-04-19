@@ -1,5 +1,6 @@
 package co.com.bancolombia.api;
 import co.com.bancolombia.model.configmodel.ConfigModel;
+import co.com.bancolombia.model.parametermodel.ParameterModel;
 import co.com.bancolombia.usecase.config.ConfigUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
@@ -19,5 +20,10 @@ public class ApiRest {
     @GetMapping(path = "/path/{id}")
     public Mono<ConfigModel> commandName(@PathVariable String id) {
         return useCase.getModel(id);
+    }
+
+    @GetMapping(path = "/parameter/{id}")
+    public Mono<ParameterModel> getParameter(@PathVariable String id) {
+        return useCase.getParameter(id);
     }
 }

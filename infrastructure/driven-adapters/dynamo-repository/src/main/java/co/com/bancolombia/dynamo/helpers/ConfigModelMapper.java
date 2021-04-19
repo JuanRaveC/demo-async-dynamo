@@ -10,10 +10,8 @@ import java.util.Map;
 public class ConfigModelMapper {
 
     public static ConfigModel toModel(Map<String, AttributeValue> item){
-        String id = item.get("id").s();
-        log.info("id -> " + id);
         return ConfigModel.builder()
-                .id(id)
+                .id(item.get("id").s())
                 .build();
     }
 }

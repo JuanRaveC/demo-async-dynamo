@@ -16,9 +16,4 @@ public class DynamoConfig {
                 .region(Region.US_EAST_1)
                 .build();
     }
-
-    @Bean
-    public ConfigUseCase configUseCase(ConfigRepository repository){
-        return new ConfigUseCase(repository);
-    }
 }
