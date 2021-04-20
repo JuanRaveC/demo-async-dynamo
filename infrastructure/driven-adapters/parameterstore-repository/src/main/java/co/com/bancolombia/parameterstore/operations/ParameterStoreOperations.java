@@ -6,10 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
+import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.services.ssm.SsmAsyncClient;
-import software.amazon.awssdk.services.ssm.model.GetParameterRequest;
-import software.amazon.awssdk.services.ssm.model.GetParameterResponse;
-import software.amazon.awssdk.services.ssm.model.SsmException;
+import software.amazon.awssdk.services.ssm.model.*;
 
 import java.lang.reflect.Type;
 import java.util.concurrent.CompletableFuture;
@@ -23,24 +22,49 @@ public class ParameterStoreOperations {
     private final SsmAsyncClient client;
 
     public <T> Mono<T> getParameter(String parameterName, Type typeOfT) {
-        if (parameterName == null) {
-            return null;
+        if (parameterName == null || parameterName.isEmpty()) {
+            return Mono.error(NullPointerException::new);
         }
-        Gson gson = new Gson();
         try {
             GetParameterRequest parameterRequest = GetParameterRequest.builder()
                     .name(parameterName)
                     .build();
             CompletableFuture<GetParameterResponse> response = client.getParameter(parameterRequest);
-            String resString = response.join().parameter().value();
-            return Mono.just(gson.fromJson(resString, typeOfT));
+            Gson gson = new Gson();
+            return Mono.just(gson.fromJson(response.join().parameter().value(), typeOfT));
         } catch (SsmException e) {
             log.info("Error fetching parameter from ParameterStore Service" + e.getMessage());
-            return null;
+            return Mono.error(e);
         } catch (JsonParseException e) {
             log.info("Error parsing response to class: " + typeOfT.getTypeName() + " provided.");
             log.info(e.getMessage());
-            return null;
+            return Mono.error(e);
+        }
+    }
+
+    public <T> Mono<T> putParameter(String name, T instance) {
+        if (instance == null) {
+            return Mono.error(NullPointerException::new);
+        }
+        try {
+            ParameterType parameterType = ParameterType.STRING;
+            Gson gson = new Gson();
+            String value = gson.toJson(instance, instance.getClass());
+            PutParameterRequest request = PutParameterRequest.builder()
+                    .name(name)
+                    .value(value)
+                    .dataType("String")
+                    .type(parameterType)
+                    .build();
+            client.putParameter(request);
+            return Mono.just(instance);
+        } catch (JsonParseException e) {
+            log.info("Error parsing response to class: " + instance.getClass() + " provided.");
+            log.info(e.getMessage());
+            return Mono.error(e);
+        } catch (SdkException e) {
+            log.info("Error on aws sdk. Exception: " + e.getMessage());
+            return Mono.error(e);
         }
     }
 
