@@ -19,6 +19,8 @@ subprojects {
         implementation(group: 'software.amazon.awssdk', name: 'dynamodb')
         implementation(group: 'software.amazon.awssdk', name: 'regions')
         implementation(group: 'software.amazon.awssdk', name: 'ssm')
+        implementation(group: 'software.amazon.awssdk', name: 'kinesis')
+        implementation(group: 'software.amazon.awssdk', name: 'netty-nio-client')
 
         implementation 'org.springframework.boot:spring-boot-starter-webflux'
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -35,6 +37,10 @@ subprojects {
         testCompileOnly  "org.projectlombok:lombok:${lombokVersion}"
         testAnnotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
         implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    }
+
+    test {
+        useJUnitPlatform()
     }
 
     test.finalizedBy(project.tasks.jacocoTestReport)

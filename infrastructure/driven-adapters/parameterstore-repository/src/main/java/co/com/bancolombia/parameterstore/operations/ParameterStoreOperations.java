@@ -33,7 +33,7 @@ public class ParameterStoreOperations {
             Gson gson = new Gson();
             return Mono.just(gson.fromJson(response.join().parameter().value(), typeOfT));
         } catch (SsmException e) {
-            log.info("Error fetching parameter from ParameterStore Service" + e.getMessage());
+            log.info("Error fetching paramet    er from ParameterStore Service" + e.getMessage());
             return Mono.error(e);
         } catch (JsonParseException e) {
             log.info("Error parsing response to class: " + typeOfT.getTypeName() + " provided.");
