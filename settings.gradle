@@ -10,5 +10,9 @@ include ':reactive-web'
 project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
 include ':dynamo-repository'
 project(':dynamo-repository').projectDir = file('./infrastructure/driven-adapters/dynamo-repository')
+include ':kinesis-adapter'
+project(':kinesis-adapter').projectDir = file('./infrastructure/driven-adapters/kinesis-adapter')
 include ':parameterstore-repository'
 project(':parameterstore-repository').projectDir = file('./infrastructure/driven-adapters/parameterstore-repository')
+include ':iseries-adapter'
+project(':iseries-adapter').projectDir = file('./infrastructure/driven-adapters/iseries-adapter')

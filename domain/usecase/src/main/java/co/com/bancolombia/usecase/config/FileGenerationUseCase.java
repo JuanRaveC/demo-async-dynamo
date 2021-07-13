@@ -12,16 +12,14 @@ public class FileGenerationUseCase {
 
     public String getObjectAsString(Object[] objects, String delimiter) {
         return Stream.of(objects)
-                .map(this::getString)
+                .map(o -> getString(o, delimiter))
                 .reduce((accum, obj) -> accum.concat(delimiter).concat(obj))
                 .orElse("");
-    }
-
-    public String getString(Object obj){
-        return obj != null ? obj.toString() : "";
     }
 
     public String getString(Object obj, String delimiter){
         return obj != null ? wrapValue(obj.toString(), delimiter) : "";
     }
+
+    public String getString(Object obj){ return obj != null ? obj.toString() : ""; }
 }

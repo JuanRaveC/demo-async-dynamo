@@ -1,10 +1,10 @@
 package co.com.bancolombia.dynamo.adapter;
 
+import co.com.bancolombia.dynamo.operations.DynamoOperations;
 import co.com.bancolombia.model.configmodel.ConfigModel;
 import co.com.bancolombia.model.configmodel.gateways.ConfigRepository;
-import org.springframework.stereotype.Repository;
-import co.com.bancolombia.dynamo.operations.DynamoOperations;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository

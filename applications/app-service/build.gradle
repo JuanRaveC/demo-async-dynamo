@@ -6,6 +6,7 @@ dependencies {
     implementation project(':dynamo-repository')
     implementation project(':parameterstore-repository')
     implementation project(':reactive-web')
+    implementation project(':kinesis-adapter')
     compile 'org.springframework.boot:spring-boot-starter'
     compile 'org.reactivecommons.utils:object-mapper:0.1.0'
     runtime('org.springframework.boot:spring-boot-devtools')

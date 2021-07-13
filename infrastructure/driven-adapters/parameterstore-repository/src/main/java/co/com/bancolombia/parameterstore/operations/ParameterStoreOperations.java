@@ -2,15 +2,17 @@ package co.com.bancolombia.parameterstore.operations;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.services.ssm.SsmAsyncClient;
 import software.amazon.awssdk.services.ssm.model.*;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -43,7 +45,7 @@ public class ParameterStoreOperations {
     }
 
     public <T> Mono<T> putParameter(String name, T instance) {
-        if (instance == null) {
+        if (instance == null || name == null) {
             return Mono.error(NullPointerException::new);
         }
         try {

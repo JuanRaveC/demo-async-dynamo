@@ -19,8 +19,6 @@ subprojects {
         implementation(group: 'software.amazon.awssdk', name: 'dynamodb')
         implementation(group: 'software.amazon.awssdk', name: 'regions')
         implementation(group: 'software.amazon.awssdk', name: 'ssm')
-        implementation(group: 'software.amazon.awssdk', name: 'kinesis')
-        implementation(group: 'software.amazon.awssdk', name: 'netty-nio-client')
 
         implementation 'org.springframework.boot:spring-boot-starter-webflux'
         implementation 'org.springframework.boot:spring-boot-starter-actuator'

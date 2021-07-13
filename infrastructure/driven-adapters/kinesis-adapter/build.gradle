@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(':model')
+    compile 'org.springframework:spring-context'
+    implementation(group: 'software.amazon.awssdk', name: 'kinesis')
+    implementation(group: 'software.amazon.awssdk', name: 'netty-nio-client')
+}
