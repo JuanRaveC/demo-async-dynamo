@@ -30,7 +30,7 @@ public class DynamoOperations {
                 .build();
 
         return Mono.fromFuture(client.getItem(request))
-                .switchIfEmpty(Mono.error(new Exception("Not Found "+ id )))//mejorar manejo de errores
+                .switchIfEmpty(Mono.error(new Exception("Not Found " + id)))//mejorar manejo de errores
                 .map(getItemResponse -> ConfigModelMapper.toModel(getItemResponse.item())).cache();
 
     }

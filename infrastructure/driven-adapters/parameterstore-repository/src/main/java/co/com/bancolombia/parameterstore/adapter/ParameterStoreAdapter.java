@@ -11,10 +11,10 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ParameterStoreAdapter implements ParameterModelRepository {
 
-   private final ParameterStoreOperations operations;
+    private final ParameterStoreOperations operations;
 
-   @Override
-   public Mono<ParameterModel> getParameter(String parameterName) {
-      return operations.getParameter(parameterName, ParameterModel.class);
-   }
+    @Override
+    public Mono<ParameterModel> getParameter(String parameterName) {
+        return operations.getParameter(parameterName, ParameterModel.class);
+    }
 }

@@ -16,23 +16,24 @@ public class IseriesOperations {
 
     private final Db2ConnectionHelper connectionHelper;
 
-    public String executeDb2Query(String name){
-        try{
+    public String executeDb2Query(String name) {
+        try {
             Connection connection = connectionHelper.getDb2Connection();
             //String response = connection.nativeSQL("Select * from EABLIBPR.EABFFHPOSM");
+
             ResultSet response;
             try (PreparedStatement statement = connection.prepareStatement("Select * from EABLIBPR.EABFFHPOSM")) {
                 response = statement.executeQuery();
             }
             Stream.Builder streamData = Stream.builder();
-            while (response.next()){
+            while (response.next()) {
                 streamData.add(response.getObject(0));
             }
             Stream stream = streamData.build();
             stream.forEach(System.out::println);
 
             connection.close();
-        }catch (SQLException exception){
+        } catch (SQLException exception) {
             log.info("Error".concat(exception.getMessage()));
         }
         return "Executed";

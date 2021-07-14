@@ -10,6 +10,12 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter'
     compile 'org.reactivecommons.utils:object-mapper:0.1.0'
     runtime('org.springframework.boot:spring-boot-devtools')
+
+    //implementation(group: 'com.ibm.db2.jcc.DB2Driver', name: 'ojdbc8')
+
+    //implementation group: 'com.ibm.db2', name: 'jcc', version: '11.5.6.0'
+    implementation(group: 'net.sf.jt400', name: 'jt400', version: '10.6')
+
 }
 
 task explodedJar(type: Copy) {

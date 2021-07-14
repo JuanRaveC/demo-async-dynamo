@@ -17,9 +17,11 @@ public class FileGenerationUseCase {
                 .orElse("");
     }
 
-    public String getString(Object obj, String delimiter){
+    public String getString(Object obj, String delimiter) {
         return obj != null ? wrapValue(obj.toString(), delimiter) : "";
     }
 
-    public String getString(Object obj){ return obj != null ? obj.toString() : ""; }
+    public String getString(Object obj) {
+        return obj != null ? obj.toString() : "";
+    }
 }

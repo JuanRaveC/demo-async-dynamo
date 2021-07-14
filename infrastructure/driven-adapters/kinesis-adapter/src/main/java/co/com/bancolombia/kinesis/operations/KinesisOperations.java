@@ -11,29 +11,29 @@ import software.amazon.awssdk.services.kinesis.model.KinesisException;
 
 import java.util.concurrent.CompletableFuture;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 @Slf4j
 public class KinesisOperations {
 
     private final KinesisAsyncClient client;
 
-    public <T> void setObjectOnDataStream(T data){
+    public <T> void setObjectOnDataStream(T data) {
         Gson gson = new Gson();
         String stringObject = gson.toJson(data);
     }
 
-    private boolean validateStream(String kinesisStream){
-        try{
+    private boolean validateStream(String kinesisStream) {
+        try {
             DescribeStreamRequest streamRequest = DescribeStreamRequest.builder()
                     .streamName(kinesisStream)
                     .build();
             CompletableFuture<DescribeStreamResponse> streamResponse = client.describeStream(streamRequest);
-            if(!streamResponse.join().streamDescription().streamStatus().toString().equals("ACTIVE")) {
+            if (!streamResponse.join().streamDescription().streamStatus().toString().equals("ACTIVE")) {
                 log.info("Stream " + kinesisStream + " is not active. Please wait a few moments and try again.");
                 return false;
             }
-        }catch (KinesisException e){
+        } catch (KinesisException e) {
             log.info("Error validating provided Stream, with error: " + e.getMessage());
             return false;
         }

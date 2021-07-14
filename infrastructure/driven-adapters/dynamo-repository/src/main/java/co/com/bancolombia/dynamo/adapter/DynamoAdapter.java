@@ -11,10 +11,10 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class DynamoAdapter implements ConfigRepository {
 
-   private final DynamoOperations operations;
+    private final DynamoOperations operations;
 
-   @Override
-   public Mono<ConfigModel> getModel(String id) {
-      return operations.getObject(id);
-   }
+    @Override
+    public Mono<ConfigModel> getModel(String id) {
+        return operations.getObject(id);
+    }
 }

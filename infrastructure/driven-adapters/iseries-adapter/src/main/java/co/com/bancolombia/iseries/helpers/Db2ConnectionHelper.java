@@ -11,21 +11,24 @@ import java.util.Properties;
 @Slf4j
 public class Db2ConnectionHelper {
 
-     public Connection getDb2Connection(){
-         try {
+    public Connection getDb2Connection() {
+        try {
+            String host = "DDSET01";
+            String userid = "DDSTDCJRC";
+            String password = "AWS4RCH1";//"AWS4RCH1"
+            String schema = "DDSET01";
 
-
-             AS400JDBCDriver driver = new AS400JDBCDriver();
-             Properties properties = new Properties();
-             properties.put("naming", "sql");
-             properties.put("errors", "full");
-             AS400 as400 = new AS400(host, userid, password);
-             return driver.connect(as400, properties, schema);
-         } catch (SQLException exception) {
-             log.info("Error: ".concat(exception.getSQLState()));
-             exception.printStackTrace();
-             return null;
-         }
-     }
+            AS400JDBCDriver driver = new AS400JDBCDriver();
+            Properties properties = new Properties();
+            properties.put("naming", "sql");
+            properties.put("errors", "full");
+            AS400 as400 = new AS400(host, userid, password);
+            return driver.connect(as400, properties, schema);
+        } catch (SQLException exception) {
+            log.info("Error: ".concat(exception.getSQLState()));
+            exception.printStackTrace();
+            return null;
+        }
+    }
 
 }

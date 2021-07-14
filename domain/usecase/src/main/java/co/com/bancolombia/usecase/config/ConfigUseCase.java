@@ -14,11 +14,11 @@ public class ConfigUseCase {
     private final ParameterModelRepository parameterModelRepository;
 
 
-    public Mono<ConfigModel> getModel(String id){
+    public Mono<ConfigModel> getModel(String id) {
         return repository.getModel(id);
     }
 
-    public Mono<ParameterModel> getParameter(String parameterName){
+    public Mono<ParameterModel> getParameter(String parameterName) {
         return parameterModelRepository.getParameter(parameterName);
     }
 

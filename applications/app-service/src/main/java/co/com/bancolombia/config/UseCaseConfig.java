@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfig {
     @Bean
     public ConfigUseCase configUseCase(ConfigRepository repository,
-                                       ParameterModelRepository parameter){
+                                       ParameterModelRepository parameter) {
         return new ConfigUseCase(repository, parameter);
     }
 }

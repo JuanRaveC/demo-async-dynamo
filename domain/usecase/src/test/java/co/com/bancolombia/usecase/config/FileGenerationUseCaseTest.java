@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileGenerationUseCaseTest {
 
     @Test
-    public void testGetObjectAsStringShouldBeOk(){
-        Object[] object = {"Juan","Maria","Pedro","123456"};
+    public void testGetObjectAsStringShouldBeOk() {
+        Object[] object = {"Juan", "Maria", "Pedro", "123456"};
         FileGenerationUseCase useCase = new FileGenerationUseCase();
         String delimiter = ";";
         String expected = "Juan;Maria;Pedro;123456";
@@ -22,8 +22,8 @@ class FileGenerationUseCaseTest {
     }
 
     @Test
-    public void testGetObjectAsStringShouldBeOkWithWrapValue(){
-        Object[] object = {"Juan","Maria","Pedro","123.456"};
+    public void testGetObjectAsStringShouldBeOkWithWrapValue() {
+        Object[] object = {"Juan", "Maria", "Pedro", "123.456"};
         FileGenerationUseCase useCase = new FileGenerationUseCase();
         String delimiter = ".";
         String expected = "Juan.Maria.Pedro.'123.456'";
@@ -33,7 +33,7 @@ class FileGenerationUseCaseTest {
     }
 
     @Test
-    public void testFilterGroups(){
+    public void testFilterGroups() {
         List<String> groups = new ArrayList<>();
         groups.add("A_MP_SKYNET_FUNCIONALES_DEV");
         groups.add("EveryOne - AmbientesBC");

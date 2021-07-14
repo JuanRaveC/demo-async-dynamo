@@ -1,4 +1,5 @@
 package co.com.bancolombia.model.parametermodel;
+
 import lombok.Builder;
 import lombok.Data;
 

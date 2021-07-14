@@ -42,9 +42,9 @@ public class Db2SimpleConnectionHelper {
         connectionPool.setInitialPoolSize(initialPoolSize);
         connectionPool.setMinPoolSize(minPoolSize);
         connectionPool.setMaxPoolSize(maxPoolSize);
-//        connectionPool.setMaxLifetime((int) (maxLifetime_ / 1000));  // convert to seconds
-//        connectionPool.setMaxIdleTime((int) (maxIdleTime_ / 1000));  // convert to seconds
-//        connectionPool.setPropertyCycle((int) (propertyCycle_ / 1000));  // convert to seconds
+        //        connectionPool.setMaxLifetime((int) (maxLifetime_ / 1000));  // convert to seconds
+        //        connectionPool.setMaxIdleTime((int) (maxIdleTime_ / 1000));  // convert to seconds
+        //        connectionPool.setPropertyCycle((int) (propertyCycle_ / 1000));  // convert to seconds
         //connectionPool.setReuseConnections(false);  // do not re-use connections
 
         // Set the initial context factory to use.

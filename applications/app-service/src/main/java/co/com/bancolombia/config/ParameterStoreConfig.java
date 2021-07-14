@@ -8,8 +8,8 @@ import software.amazon.awssdk.services.ssm.SsmAsyncClient;
 @Configuration
 public class ParameterStoreConfig {
 
-    @Bean
-    public SsmAsyncClient ssmAsyncClient(){
+    //@Bean
+    public SsmAsyncClient ssmAsyncClient() {
         return SsmAsyncClient.builder()
                 .region(Region.US_EAST_1)
                 .build();

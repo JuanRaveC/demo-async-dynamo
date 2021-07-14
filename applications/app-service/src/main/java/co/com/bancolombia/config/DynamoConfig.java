@@ -8,7 +8,7 @@ import software.amazon.awssdk.regions.Region;
 @Configuration
 public class DynamoConfig {
 
-    @Bean
+    //@Bean
     public DynamoDbAsyncClient dynamoDbAsyncClient() {
         return DynamoDbAsyncClient.builder()
                 .region(Region.US_EAST_1)

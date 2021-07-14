@@ -9,7 +9,7 @@ import java.util.Map;
 @Slf4j
 public class ConfigModelMapper {
 
-    public static ConfigModel toModel(Map<String, AttributeValue> item){
+    public static ConfigModel toModel(Map<String, AttributeValue> item) {
         return ConfigModel.builder()
                 .id(item.get("id").s())
                 .build();

@@ -12,3 +12,11 @@ spring:
       path: /h2
   profiles:
     include:
+  datasource:
+    driverClassName: "com.ibm.as400.access.AS400JDBCDriver"
+  jpa:
+    databasePlatform: "org.hibernate.dialect.DB2400Dialect"
+    show-sql: true
+
+
+#driverClassName: "com.ibm.db2.jcc.DB2Driver"

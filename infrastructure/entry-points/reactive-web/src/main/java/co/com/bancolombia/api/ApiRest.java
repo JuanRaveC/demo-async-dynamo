@@ -1,4 +1,5 @@
 package co.com.bancolombia.api;
+
 import co.com.bancolombia.model.configmodel.ConfigModel;
 import co.com.bancolombia.model.parametermodel.ParameterModel;
 import co.com.bancolombia.usecase.config.ConfigUseCase;
